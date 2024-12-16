@@ -16,7 +16,7 @@ const productRoutes = require('./routes/productRoutes');
 const methodRoutes = require('./routes/paymentMethod');
 // CORS Configuration
 app.use(cors({
-  origin: 'http://localhost:5173', // Frontend URL
+  origin: `${process.env.CLIENT_URL}`, // Frontend URL
   credentials: true, // Allow credentials such as cookies to be sent
 }));
 
@@ -63,7 +63,7 @@ app.set("views", path.resolve("./views"));
 
 // MongoDB connection
 const { connectMongoDB } = require('./connect');
-connectMongoDB('mongodb+srv://Aaditya:admin@cluster0.kxn151h.mongodb.net/D2');
+connectMongoDB(process.env.MONGO_URI);
 
 // Start the server
 app.listen(3000, () => {

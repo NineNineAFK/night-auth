@@ -20,7 +20,6 @@ import { Store } from "./pages/Store/Store";
 import { Contact } from "./pages/Contact";
 import Login from "./pages/Login";
 import Cart from "./pages/Cart";
-import NavBar from "../../Velocity Tweaks (Client Side)/src/components/ui/NavBar/NavBar.jsx";
 import Footer from "./components/ui/Footer";
 import Layout from "./Layout";
 import Register from "./pages/Register";
@@ -45,7 +44,6 @@ import MyKeys from "./pages/User/Dashboard/MyKeys";
 import Confirmation from "./pages/Payment/Confirmation";
 import Cancellation from "./pages/Payment/Cancellation";
 import axios from "axios";
-import { domainName } from "./utils/domainName";
 
 const router = createBrowserRouter([
   {
@@ -92,7 +90,7 @@ const router = createBrowserRouter([
         path: "/checkout/success",
         element: <Confirmation />,
         loader: async () =>{
-          const response = await axios.get(domainName + "/auth/check-auth", {
+          const response = await axios.get(import.meta.env.VITE_domainName + "/auth/check-auth", {
             withCredentials: true,
           });
           return response.data.orders[response.data.orders.length-1]; 
