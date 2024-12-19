@@ -93,6 +93,7 @@ const router = createBrowserRouter([
           const response = await axios.get(import.meta.env.VITE_domainName + "/auth/check-auth", {
             withCredentials: true,
           });
+          console.log("Auth-checkauth", response.data.orders);
           return response.data.orders[response.data.orders.length-1]; 
         }
       },
@@ -144,22 +145,22 @@ const router = createBrowserRouter([
     path: "/login",
     element: <Layout page={<LoginNew></LoginNew>}></Layout>,
   },
-  {
-    path: "/register",
-    element: <Layout page={<Register></Register>}></Layout>,
-  },
-  {
-    path: "/forgot",
-    element: <Layout page={<ResetPassword></ResetPassword>}></Layout>,
-  },
-  {
-    path: "/review/basic",
-    element: <Layout page={<ReviewBasic></ReviewBasic>}></Layout>,
-  },
-  {
-    path: "/review/premium",
-    element: <Layout page={<ReviewBasic></ReviewBasic>}></Layout>,
-  },
+  // {
+  //   path: "/register",
+  //   element: <Layout page={<Register></Register>}></Layout>,
+  // },
+  // {
+  //   path: "/forgot",
+  //   element: <Layout page={<ResetPassword></ResetPassword>}></Layout>,
+  // },
+  // {
+  //   path: "/review/basic",
+  //   element: <Layout page={<ReviewBasic></ReviewBasic>}></Layout>,
+  // },
+  // {
+  //   path: "/review/premium",
+  //   element: <Layout page={<ReviewBasic></ReviewBasic>}></Layout>,
+  // },
   {
     path: "/admin/login",
     element: <Layout page={<AdminLogin></AdminLogin>}></Layout>,

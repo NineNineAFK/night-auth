@@ -159,7 +159,7 @@ function ReviewComponent({ preloadedValues }) {
   };
 
   return (
-    <div className="mt-8 max-w-[700px] mx-auto">
+    <div className="md:mt-8 lg:mt-8 mt-0 max-w-[700px] mx-auto">
       <div className="font-Inter text-4xl font-semibold text-center pt-12 pb-6">
         Write a Review!
       </div>

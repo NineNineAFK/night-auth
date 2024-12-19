@@ -38,7 +38,6 @@ export const cartStateDB = atom({
   effects: [
     ({ setSelf }) => {
       let ignore = false;
-
       const fetchCartData = async () => {
         try {
           const response = await axios.get(import.meta.env.VITE_domainName + "/cart/cart-fix", {
@@ -61,7 +60,7 @@ export const cartStateDB = atom({
                 item.price = 29.99;
               }
             });
-
+            console.log(response.data.items)
 
             setSelf(response.data.items); // Populate atom with fetched data
           }
@@ -85,6 +84,7 @@ export const cartStateDB = atom({
 export const cartLengthSelector = selector({
   key: "cartLengthSelector",
   get: ({ get }) => {
+    console.log("Cart length selector triggered")
     const cart = get(cartStateDB);
     return cart ? cart.length : 0; // Return 0 if cart is null or empty
   },

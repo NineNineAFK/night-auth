@@ -9,7 +9,6 @@ const PRODUCT_ID_2 = process.env.PRODUCT_ID_2;
 
 const processCheckout = async (req, res) => {
     // Checkout Route
-
     try {
         const cart = await Cart.findOne({ userId: req.user.googleId });
     

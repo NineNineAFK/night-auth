@@ -15,48 +15,6 @@ export default function Cart() {
   const cartStateVal = useRecoilValue(cartState);
   const [cartStateNew, setCartStateNew] = useRecoilState(cartStateDB);
 
-
-  useEffect(() => {
-    const fetchCartData = async () => {
-      let ignore = false;
-      try {
-        
-        const response = await axios.get(import.meta.env.VITE_domainName + "/cart/cart-fix", {
-          withCredentials: true,
-        });
-        if (!ignore) {
-
-          const x = response.data.items;
-
-          if (response.data.items.length === 0) {
-            return setCartStateNew([]);
-          }
-
-          x.forEach((item) => {
-            if (item.productName === "WittCepter Product 1") {
-              item.price = 9.99;
-            }
-            if (item.productName === "WittCepter Product 2") {
-              item.price = 29.99;
-            }
-          });
-
-           
-          setCartStateNew(response.data.items); // Populate atom with fetched data
-        }
-      } catch (error) {
-        if (!ignore) {
-          setCartStateNew([]); // Handle error case, e.g., setting to empty array
-          console.error("Error fetching cart data:", error);
-        }
-      }
-    };
-    fetchCartData();
-
-  }, []);
-
-
-
   if (cartStateNew === null) {
     return <div className="text-white"></div>;
   }

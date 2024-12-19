@@ -16,7 +16,7 @@ export default function PremiumProduct({ onClick }) {
     <div>
       {" "}
       {/* product two  */}
-      <div className="bg-gradient-to-br from-[#00a2ff46] to-[#0ab5ff38]  bg-opacity-70 rounded-[30px] h-[600px] p-6">
+      <div className="bg-gradient-to-br from-[#00a2ff46] to-[#0ab5ff38]  bg-opacity-70 rounded-[30px] md:h-[600px] lg:h-[600px] h-[625px] p-6">
         <div className="text-white font-medium font-Inter text-2xl pb-2">
           Premium
         </div>
@@ -29,7 +29,7 @@ export default function PremiumProduct({ onClick }) {
           <div className="flex items-center text-gray-300 text-lg pt-1 font-semibold">
             $
           </div>
-          <div className="text-5xl">30</div>
+          <div className="text-5xl">29.99</div>
         </div>
 
         <div className="flex flex-col  mt-8 space-y-3 text-lg">

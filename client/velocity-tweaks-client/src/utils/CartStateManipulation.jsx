@@ -16,7 +16,7 @@ const toastProperties = {
   transition: Bounce,
 };
 
-export async function addToCart(utilName, productName, priceId) {
+export async function addToCart(utilName, productName, priceId, price, setCartStateNew) {
   const toastAsync = toast.loading("Adding To Cart...", toastProperties);
   await new Promise((resolve) => setTimeout(resolve, 1000));
   axios
@@ -25,6 +25,7 @@ export async function addToCart(utilName, productName, priceId) {
       {
         productName: productName,
         priceId: priceId,
+        price: price
       },
       {
         withCredentials: true,
@@ -32,6 +33,8 @@ export async function addToCart(utilName, productName, priceId) {
     )
     .then((response) => {
       console.log(utilName + "added to cart:");
+      // console.log("inside .then function",response.data.items)
+      setCartStateNew(response.data.items);
       toast.update(toastAsync, {
         render: utilName + " Added To Cart Successfully",
         type: "Success",

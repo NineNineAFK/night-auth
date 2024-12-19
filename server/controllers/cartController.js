@@ -82,7 +82,7 @@ const addToCart = async (req, res) => {
   }
 
   await cart.save();
-  res.redirect("/products");
+  res.send(cart);
 };
 
 // Route to increase quantity
@@ -131,7 +131,6 @@ const removeFromCart = async (req, res) => {
 
 const clearCart = async (req, res) => {
   let cart = await Cart.findOne({ userId: req.user.googleId });
-
   if (!cart) {
     return res.status(404).json({
       msg: "Cart Not Found",
@@ -140,10 +139,7 @@ const clearCart = async (req, res) => {
 
   cart.items = [];
   await cart.save();
-
-  res.status(200).json({
-    msg: "Cleared Cart Successfully"
-  });
+  res.send(cart);
 };
 
 module.exports = {

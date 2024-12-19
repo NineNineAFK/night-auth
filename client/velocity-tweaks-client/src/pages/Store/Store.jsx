@@ -2,8 +2,8 @@ import React from "react";
 import { CiCircleCheck } from "react-icons/ci";
 import "react-toastify/dist/ReactToastify.css";
 import { PRODUCTS } from "../../utils/products";
-import { useRecoilState, useRecoilValue } from "recoil";
-import { authStateAtom, cartNotiState, cartState } from "../../services/state/store";
+import { useRecoilState, useRecoilValue, useResetRecoilState } from "recoil";
+import { authStateAtom, cartNotiState, cartState, cartStateDB } from "../../services/state/store";
 import ScrollToTopOnMount from "../../utils/ScrollToTopOnMount";
 import "../../index.css";
 import BasicProduct from "../../components/ui/Store/BasicProduct";
@@ -11,10 +11,13 @@ import PremiumProduct from "../../components/ui/Store/PremiumProduct";
 import { Navigate, useNavigate } from "react-router-dom";
 import { Bounce, toast } from "react-toastify";
 import { addToCart } from "../../utils/CartStateManipulation";
+import axios from "axios";
 
 export function Store() {
   const [cart, setCart] = useRecoilState(cartState);
   const isAuthenticated = useRecoilValue(authStateAtom);
+  const [cartStateNew, setCartStateNew] = useRecoilState(cartStateDB);
+
   // function AddToCart(id, utilName) {
   //   if (cart[id - 1].count === 10) {
   //     toast.warn("Maximum Utilities Added To Cart!", {
@@ -57,7 +60,7 @@ export function Store() {
   const navigate = useNavigate();
 
 
-  async function ProductButtonClick(utilName, productName, priceId) {
+  async function ProductButtonClick(utilName, productName, priceId, price) {
     if (isAuthenticated === null) {
       return;
     }
@@ -75,8 +78,7 @@ export function Store() {
       });
       navigate("/login");
     } else {
-      await addToCart(utilName, productName, priceId);
-      navigate("/cart"); 
+      await addToCart(utilName, productName, priceId, price, setCartStateNew);
     }
   }
 
@@ -94,8 +96,9 @@ export function Store() {
             onClick={() => {
               ProductButtonClick(
                 "Basic Utility",
-                "WittCepter Product 1",
-                "price_1PpdduCUgsBmQhDaFQXyIoTK"
+                `${import.meta.env.VITE_productName1}`,
+                `${import.meta.env.VITE_productID1}`,
+                import.meta.env.VITE_product1Price
               );
             }}
           />
@@ -105,8 +108,9 @@ export function Store() {
           onClick={() => {
             ProductButtonClick(
               "Premium Utility",
-              "WittCepter Product 2",
-              "price_1PqEf5CUgsBmQhDaSN8IIsOx"
+              `${import.meta.env.VITE_productName2}`,
+                `${import.meta.env.VITE_productID2}`,
+                import.meta.env.VITE_product2Price
             );
           }}
         />

@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 export default function Cancellation() {
   return (
     <div className="h-full pb-36">
-      <div className="font-Inter text-6xl w-full flex justify-center font-semibold pt-12">
+      <div className="font-Inter text-5xl  md:text-6xl lg:text-6xl  w-full flex justify-center font-semibold pt-12">
         Payment Failed
       </div>
 

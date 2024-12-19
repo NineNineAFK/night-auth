@@ -10,24 +10,22 @@ import UserAccount from "./UserAccount";
 
 export default function NavBar() {
   const [button, setButton] = useRecoilState(buttonState);
-  const authState = useRecoilValue(authStateAtom); 
+  const authState = useRecoilValue(authStateAtom);
   const [authenticationState, setAuthenticationState] = useState(false);
-  
 
-  useEffect(()=>{
-    function authStateSetting()
-    {
-      if(authState === null)
-      {
+  useEffect(() => {
+    function authStateSetting() {
+      if (authState === null) {
         return setAuthenticationState(false);
       }
-      return authState ? setAuthenticationState(true) : setAuthenticationState(false)
+      return authState
+        ? setAuthenticationState(true)
+        : setAuthenticationState(false);
     }
 
-    authStateSetting(); 
-  }, [authState])
+    authStateSetting();
+  }, [authState]);
 
-  
   function boolValChanger() {
     setButton(!button);
   }
@@ -42,7 +40,7 @@ export default function NavBar() {
             </h1>
           </NavLink>
 
-          <div className="flex-grow flex justify-center ">
+          <div className="flex-grow flex justify-center">
             <ul className="flex text-white space-x-10  ">
               <NavLink to="/faq">
                 <li className=" hidden md:block  hover:text-gray-200 font-Inter  cursor-pointer">
@@ -65,7 +63,7 @@ export default function NavBar() {
           <div className="flex items-center gap-3">
             <UserAccount></UserAccount>
 
-            {authenticationState ? <Cart></Cart> : <div></div> }
+            {authenticationState ? <Cart></Cart> : <div></div>}
 
             <NavLink to="/store">
               <button className="bg-gradient-to-r h-12 w-28 from-[#E32723] via-[#8F74A6] to-[#07A4FF] text-white rounded-full p-1">
