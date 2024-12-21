@@ -6,7 +6,7 @@ import { useLoaderData } from "react-router-dom";
 
 export default function Confirmation() {
   const data = useLoaderData();
-  console.log("data", data);
+  console.log("data", data); // undefined
   return (
     <div className="h-screen">
       <div className="font-Inter text-6xl w-full flex justify-center font-semibold pt-12">
